@@ -12,6 +12,8 @@ var client *resty.Request
 var apiURL string = os.Getenv("OPENAI_HOST")
 var apiToken string = os.Getenv("OPENAI_API_KEY")
 
+var commitMessages []string
+
 func InitClient() *resty.Request {
 	client = resty.New().SetBaseURL("https://"+apiURL).R().
 		EnableTrace().
@@ -23,7 +25,7 @@ func InitClient() *resty.Request {
 	return client
 }
 
-func SubmitToApi(diff string) {
+func SubmitToApi(diff string) []string {
 	// DBEUG
 	//var prompt string = "You are a programmer and want to commit this code. Write a commit message for these code changes. \nCode changes: \n--- a/client/src/components/apps/new.vue\n+++ b/client/src/components/apps/new.vue\n@@ -841,13 +841,14 @@ export default {\n */\n     }),\n     mounted() {\n-      if (this.$route.query.service) {\n-        this.loadTemplate(this.$route.query.service);\n-      }\n       this.loadStorageClasses();\n       this.loadPipeline();\n       this.loadPodsizeList();\n       this.loadApp(); // this may lead into a race condition with the buildpacks loaded in loadPipeline\n+\n+      if (this.$route.query.service) {\n+        this.loadTemplate(this.$route.query.service);\n+      }\n     },\n     components: {\n         Addons,\n@@ -868,6 +869,14 @@ export default {\n           this.cronjobs = response.data.cronjobs;\n           this.addons = response.data.addons;\n\n+          if (response.data.image.build) {\n+            console.log(\"buildpack build\", response.data.image.build);\n+            this.buildpack.build = response.data.image.build;\n+          }\n+\n+          if (response.data.image.run) {\n+            this.buildpack.run = response.data.image.run;\n+          }\n\n           // Open Panel if there is some data to show\n           if (this.envvars.length > 0) {"
 	//var prompt string = "Say this is a test"
@@ -60,7 +62,10 @@ func SubmitToApi(diff string) {
 
 	for _, choice := range CompletionResponse.Choices {
 		println(choice.Text)
+		commitMessages = append(commitMessages, choice.Text)
 	}
+
+	return commitMessages
 }
 
 type CompletionResponse struct {
