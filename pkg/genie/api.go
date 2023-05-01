@@ -66,6 +66,7 @@ func SubmitToApi(diff string) []string {
 
 		commitMessages = append(commitMessages, strings.TrimLeft(choice.Text, "\n"))
 	}
+	commitMessages = append(commitMessages, "<empty>")
 
 	return commitMessages
 }

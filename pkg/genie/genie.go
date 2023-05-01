@@ -9,7 +9,7 @@ import (
 )
 
 func Diff() string {
-	out, err := exec.Command("git", "diff", "-u").Output()
+	out, err := exec.Command("git", "diff", "--cached", "-u").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -38,6 +38,10 @@ func SelectCommitMessage(options []string) string {
 		Options: options,
 	}
 	survey.AskOne(prompt, &color)
+
+	if color == "<empty>" {
+		color = ""
+	}
 
 	return color
 }
