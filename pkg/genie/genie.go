@@ -2,6 +2,7 @@ package genie
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 )
 
@@ -11,6 +12,12 @@ func Diff() string {
 		fmt.Println(err)
 	}
 	//fmt.Println(string(out))
+
+	if len(out) == 0 {
+		fmt.Println("No changes to commit")
+		os.Exit(1)
+	}
+
 	return string(out)
 }
 
