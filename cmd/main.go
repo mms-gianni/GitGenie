@@ -6,5 +6,6 @@ import (
 
 func main() {
 
+	//genie.Diff()
 	genie.Status()
 }

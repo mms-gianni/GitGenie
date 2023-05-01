@@ -2,29 +2,21 @@ package genie
 
 import (
 	"fmt"
-
-	"github.com/go-git/go-git/v5"
+	"os/exec"
 )
 
+func Diff() {
+	out, err := exec.Command("git", "diff", "-u").Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(out))
+}
+
 func Status() {
-
-	r, err := git.PlainOpen(".")
-
+	out, err := exec.Command("git", "status", "-s", "-uno").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	w, err := r.Worktree()
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	status, err := w.Status()
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(status)
+	fmt.Println(string(out))
 }
