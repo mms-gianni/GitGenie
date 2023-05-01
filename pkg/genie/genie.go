@@ -13,7 +13,6 @@ func Diff() string {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//fmt.Println(string(out))
 
 	if len(out) == 0 {
 		fmt.Println("No changes to commit")
