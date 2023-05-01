@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/leaanthony/spinner"
 )
 
 var client *resty.Request
@@ -51,10 +52,13 @@ func SubmitToApi(diff string) []string {
 	client.SetBody(body)
 	client.SetResult(&CompletionResponse)
 
+	s := spinner.New()
+	s.Start("Processing images")
 	resp, err := client.Post("/v1/completions")
 	if err != nil {
 		panic(err)
 	}
+	s.Success("Your memes are ready")
 	println(resp.Status())
 
 	// DEBUG
