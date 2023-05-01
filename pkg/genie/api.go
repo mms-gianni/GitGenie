@@ -53,13 +53,12 @@ func SubmitToApi(diff string) []string {
 	client.SetResult(&CompletionResponse)
 
 	s := spinner.New()
-	s.Start("Processing images")
+	s.Start("Loading commit messages...")
 	resp, err := client.Post("/v1/completions")
 	if err != nil {
 		panic(err)
 	}
-	s.Success("Your memes are ready")
-	println(resp.Status())
+	s.Success("Commit messages loaded [" + resp.Status() + "]")
 
 	// DEBUG
 	//b := resp.Body()
