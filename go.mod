@@ -2,14 +2,15 @@ module github.com/mms-gianni/GitGenie
 
 go 1.19
 
-require github.com/go-resty/resty/v2 v2.7.0
+require (
+	github.com/AlecAivazis/survey/v2 v2.3.6
+	github.com/go-resty/resty/v2 v2.7.0
+	github.com/leaanthony/spinner v0.5.4
+)
 
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.6 // indirect
-	github.com/briandowns/spinner v1.23.0 // indirect
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
-	github.com/leaanthony/spinner v0.5.4 // indirect
 	github.com/leaanthony/synx v0.1.0 // indirect
 	github.com/leaanthony/wincursor v0.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.2 // indirect
