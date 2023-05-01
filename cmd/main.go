@@ -14,9 +14,10 @@ var (
 )
 
 func main() {
+	//genie.Status()
+
 	genie.InitClient()
 	diff := genie.Diff()
-	//genie.Status()
 
 	commitMessages := genie.SubmitToApi(diff)
 	commitMessage := genie.SelectCommitMessage(commitMessages)
