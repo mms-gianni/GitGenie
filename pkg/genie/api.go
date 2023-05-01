@@ -3,6 +3,7 @@ package genie
 import (
 	"encoding/json"
 	"os"
+	"strings"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -61,8 +62,9 @@ func SubmitToApi(diff string) []string {
 	//println(string(b))
 
 	for _, choice := range CompletionResponse.Choices {
-		println(choice.Text)
-		commitMessages = append(commitMessages, choice.Text)
+		//println(choice.Text)
+
+		commitMessages = append(commitMessages, strings.TrimLeft(choice.Text, "\n"))
 	}
 
 	return commitMessages
