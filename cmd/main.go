@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/mms-gianni/GitGenie/pkg/genie"
 )
 
@@ -17,6 +19,10 @@ func main() {
 	//genie.Status()
 
 	commitMessages := genie.SubmitToApi(diff)
-	genie.SelectCommitMessage(commitMessages)
+	commitMessage := genie.SelectCommitMessage(commitMessages)
+	commitMessage = genie.EditCommitMessage(commitMessage)
+
+	//genie.Commit(commitMessage)
+	fmt.Println(commitMessage)
 
 }

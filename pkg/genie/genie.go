@@ -41,3 +41,16 @@ func SelectCommitMessage(options []string) string {
 
 	return color
 }
+
+func EditCommitMessage(commitMsg string) string {
+	editedCommitMsg := commitMsg
+	prompt := &survey.Editor{
+		Message:       "Edit commit message:",
+		Default:       commitMsg,
+		HideDefault:   true,
+		AppendDefault: true,
+	}
+	survey.AskOne(prompt, &editedCommitMsg)
+
+	return editedCommitMsg
+}
