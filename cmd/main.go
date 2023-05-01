@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/mms-gianni/GitGenie/pkg/genie"
 )
 
@@ -23,7 +21,6 @@ func main() {
 	commitMessage := genie.SelectCommitMessage(commitMessages)
 	commitMessage = genie.EditCommitMessage(commitMessage)
 
-	//genie.Commit(commitMessage)
-	fmt.Println(commitMessage)
+	genie.Commit(commitMessage)
 
 }

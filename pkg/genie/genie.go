@@ -58,3 +58,11 @@ func EditCommitMessage(commitMsg string) string {
 
 	return editedCommitMsg
 }
+
+func Commit(commitMsg string) {
+	out, err := exec.Command("git", "commit", "-m", commitMsg).Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(out))
+}
