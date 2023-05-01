@@ -2,5 +2,5 @@ package main
 
 func main() {
 
-	status()
+	ginie.Status()
 }
