@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/AlecAivazis/survey/v2"
 )
 
 func Diff() string {
@@ -27,4 +29,15 @@ func Status() {
 		fmt.Println(err)
 	}
 	fmt.Println(string(out))
+}
+
+func SelectCommitMessage(options []string) string {
+	color := ""
+	prompt := &survey.Select{
+		Message: "Select a commit message:",
+		Options: options,
+	}
+	survey.AskOne(prompt, &color)
+
+	return color
 }

@@ -16,6 +16,7 @@ func main() {
 	diff := genie.Diff()
 	//genie.Status()
 
-	genie.SubmitToApi(diff)
+	commitMessages := genie.SubmitToApi(diff)
+	genie.SelectCommitMessage(commitMessages)
 
 }
