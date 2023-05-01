@@ -5,12 +5,13 @@ import (
 	"os/exec"
 )
 
-func Diff() {
+func Diff() string {
 	out, err := exec.Command("git", "diff", "-u").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(string(out))
+	//fmt.Println(string(out))
+	return string(out)
 }
 
 func Status() {

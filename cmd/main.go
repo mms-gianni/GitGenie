@@ -13,9 +13,9 @@ var (
 
 func main() {
 	genie.InitClient()
-	//genie.Diff()
+	diff := genie.Diff()
 	//genie.Status()
 
-	genie.SubmitToApi()
+	genie.SubmitToApi(diff)
 
 }
