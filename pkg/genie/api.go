@@ -50,6 +50,7 @@ func SubmitToApi(diff string) []string {
 	s.Start("Loading commit messages...")
 	resp, err := client.Post("/v1/completions")
 	if err != nil {
+		s.Error("Error loading commit messages[" + resp.Status() + "]")
 		panic(err)
 	}
 	s.Success("Commit messages loaded [" + resp.Status() + "]")
