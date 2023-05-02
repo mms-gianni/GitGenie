@@ -12,13 +12,13 @@ var config *Config
 
 type Config struct {
 	openAiApiHost  string
-	OpenAiApiToken string
+	openAiApiToken string
 }
 
 func loadConfig() {
 	config = &Config{}
 	config.openAiApiHost = os.Getenv("OPENAI_API_HOST")
-	config.OpenAiApiToken = os.Getenv("OPENAI_API_KEY")
+	config.openAiApiToken = os.Getenv("OPENAI_API_KEY")
 }
 
 func Diff() string {

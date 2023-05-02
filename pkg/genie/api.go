@@ -18,7 +18,7 @@ func InitClient() *resty.Request {
 	client = resty.New().SetBaseURL("https://"+config.openAiApiHost).R().
 		EnableTrace().
 		SetAuthScheme("Bearer").
-		SetAuthToken(config.OpenAiApiToken).
+		SetAuthToken(config.openAiApiToken).
 		SetHeader("Accept", "application/json").
 		SetHeader("Content-Type", "application/json").
 		SetHeader("User-Agent", "git-genie/0.0.1")
