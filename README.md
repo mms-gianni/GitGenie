@@ -12,10 +12,10 @@ git gci
 
 ## Installation instructions
 
-Download the Archived binary from the [releases page](https://github.com/mms-gianni/GitGenie/releases) and extract it to /usr/local/bin
+Download the Archived binary from the [releases page](https://github.com/mms-gianni/GitGenie/releases/latest) and extract it to /usr/local/bin or any other directory in your PATH.
 
 ```bash 
-sudo tar -xvf git-genie.tar.gz -C /usr/local/bin
+tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
 
 export OPENAI_API_KEY=sk-y..............................
 ```
