@@ -35,7 +35,7 @@ func SubmitToApi(diff string) []string {
 		"temperature": 1,
 		"max_tokens": 300,
 		"top_p": 1,
-		"n": 3,
+		"n": ` + config.suggestions + `,
 		"stream": false,
 		"echo": false,
 		"frequency_penalty": 0,

@@ -13,12 +13,21 @@ var config *Config
 type Config struct {
 	openAiApiHost  string
 	openAiApiToken string
+	suggestions    string
 }
 
 func loadConfig() {
 	config = &Config{}
-	config.openAiApiHost = os.Getenv("OPENAI_API_HOST")
+	config.openAiApiHost = getEnv("OPENAI_API_HOST", "api.openai.com")
 	config.openAiApiToken = os.Getenv("OPENAI_API_KEY")
+	config.openAiApiHost = getEnv("GENIE_SUGESTIONS", "3")
+}
+
+func getEnv(key string, fallback string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return fallback
 }
 
 func Diff() string {
