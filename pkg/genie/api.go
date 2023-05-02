@@ -26,6 +26,7 @@ func InitClient() *resty.Request {
 }
 
 func SubmitToApi(diff string) []string {
+
 	var prompt string = "You are a programmer and want to commit this code. Describe the code changes in one sentence.\n\n" + diff
 	var jsonPrompt string = jsonEscape(prompt)
 	var CompletionResponse CompletionResponse

@@ -14,13 +14,30 @@ type Config struct {
 	openAiApiHost  string
 	openAiApiToken string
 	suggestions    string
+	length         string
+	max_tokens     string
 }
 
 func loadConfig() {
 	config = &Config{}
 	config.openAiApiHost = getEnv("OPENAI_API_HOST", "api.openai.com")
 	config.openAiApiToken = os.Getenv("OPENAI_API_KEY")
-	config.openAiApiHost = getEnv("GENIE_SUGESTIONS", "3")
+	config.suggestions = getEnv("GENIE_SUGESTIONS", "3")
+	config.length = getEnv("GENIE_LENGTH", "medium")
+	//config.max_tokens = getEnv("GENIE_MAX_TOKENS", "300")
+
+	switch config.length {
+	case "short":
+		config.max_tokens = "100"
+	case "medium":
+		config.max_tokens = "300"
+	case "long":
+		config.max_tokens = "500"
+	case "verylong":
+		config.max_tokens = "1000"
+	default:
+		config.max_tokens = "300"
+	}
 }
 
 func getEnv(key string, fallback string) string {
