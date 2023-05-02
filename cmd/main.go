@@ -17,7 +17,8 @@ func main() {
 	genie.InitClient()
 	diff := genie.Diff()
 
-	commitMessages := genie.SubmitToApi(diff)
+	//commitMessages := genie.SubmitToApi(diff)
+	commitMessages := genie.SubmitToApiChat(diff)
 	commitMessage := genie.SelectCommitMessage(commitMessages)
 	commitMessage = genie.EditCommitMessage(commitMessage)
 
