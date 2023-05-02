@@ -16,6 +16,7 @@ type Config struct {
 	suggestions    string
 	length         string
 	max_tokens     string
+	skipedit       string
 }
 
 func loadConfig() {
@@ -25,6 +26,7 @@ func loadConfig() {
 	config.suggestions = getEnv("GENIE_SUGESTIONS", "3")
 	config.length = getEnv("GENIE_LENGTH", "medium")
 	//config.max_tokens = getEnv("GENIE_MAX_TOKENS", "300")
+	config.skipedit = getEnv("GENIE_SKIP_EDIT", "false")
 
 	switch config.length {
 	case "short":
@@ -70,21 +72,26 @@ func Status() {
 }
 
 func SelectCommitMessage(options []string) string {
-	color := ""
+	msg := ""
 	prompt := &survey.Select{
 		Message: "Select a commit message:",
 		Options: options,
 	}
-	survey.AskOne(prompt, &color)
+	survey.AskOne(prompt, &msg)
 
-	if color == "<empty>" {
-		color = ""
+	if msg == "<empty>" {
+		msg = ""
 	}
 
-	return color
+	return msg
 }
 
 func EditCommitMessage(commitMsg string) string {
+
+	if config.skipedit == "true" && commitMsg != "" {
+		return commitMsg
+	}
+
 	editedCommitMsg := commitMsg
 	prompt := &survey.Editor{
 		Message:       "Edit commit message:",

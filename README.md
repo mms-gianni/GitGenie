@@ -4,6 +4,7 @@ Create commit messages with ChatGPT
 ## Usage
     
 ```bash
+git add . 
 git gci 
 ```
 
@@ -26,3 +27,4 @@ Available env variables:
 - `EDITOR` or `VISUAL`: Editor to edit commit message (default: `vim`)
 - `GENIE_SUGESTIONS`: Number of suggestions to generate (default: `3`)
 - `GENIE_LENGTH`: Length of each suggestion (default: `medium`, can be `short`, `medium`, `long`, `verylong`)
+- `GENIE_SKIP_EDIT`: Skip editing the commit message (default: `false`)
