@@ -2,6 +2,7 @@ package genie
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -78,13 +79,12 @@ func SubmitToApiChat(diff string) []string {
 				"role": "user", 
 				"content": "` + jsonPrompt + `"
 			}
-		]
+		],
 		"temperature": 1,
 		"max_tokens": ` + config.max_tokens + `,
 		"top_p": 1,
 		"n": ` + config.suggestions + `,
 		"stream": false,
-		"echo": false,
 		"frequency_penalty": 0,
 		"presence_penalty": 0
 	  }
@@ -98,6 +98,11 @@ func SubmitToApiChat(diff string) []string {
 	if err != nil {
 		s.Error("Error loading commit messages[" + resp.Status() + "]")
 		panic(err)
+	}
+	if resp.StatusCode() > 299 {
+		s.Error("Error loading commit messages[" + resp.Status() + "]")
+		fmt.Println(body)
+		panic(string(resp.Body()))
 	}
 	s.Success("Commit messages loaded [" + resp.Status() + "]")
 
