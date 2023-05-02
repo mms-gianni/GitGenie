@@ -2,7 +2,6 @@ package genie
 
 import (
 	"encoding/json"
-	"os"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -11,16 +10,15 @@ import (
 
 var client *resty.Request
 
-var apiURL string = os.Getenv("OPENAI_HOST")
-var apiToken string = os.Getenv("OPENAI_API_KEY")
-
 var commitMessages []string
 
 func InitClient() *resty.Request {
-	client = resty.New().SetBaseURL("https://"+apiURL).R().
+	loadConfig()
+
+	client = resty.New().SetBaseURL("https://"+config.openAiApiHost).R().
 		EnableTrace().
 		SetAuthScheme("Bearer").
-		SetAuthToken(apiToken).
+		SetAuthToken(config.OpenAiApiToken).
 		SetHeader("Accept", "application/json").
 		SetHeader("Content-Type", "application/json").
 		SetHeader("User-Agent", "git-genie/0.0.1")

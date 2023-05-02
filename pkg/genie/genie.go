@@ -8,6 +8,19 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 )
 
+var config *Config
+
+type Config struct {
+	openAiApiHost  string
+	OpenAiApiToken string
+}
+
+func loadConfig() {
+	config = &Config{}
+	config.openAiApiHost = os.Getenv("OPENAI_API_HOST")
+	config.OpenAiApiToken = os.Getenv("OPENAI_API_KEY")
+}
+
 func Diff() string {
 	out, err := exec.Command("git", "diff", "--cached", "-u").Output()
 	if err != nil {
