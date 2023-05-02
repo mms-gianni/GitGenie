@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/img/mascot.png" height="200" /></p>
+
 # GitGenie
 Create commit messages with ChatGPT
 
