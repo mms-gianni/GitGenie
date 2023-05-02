@@ -11,7 +11,7 @@ Available env variables:
 
 - `OPENAI_API_KEY`: OpenAI API token **(required)**
 - `OPENAI_HOST`: OpenAI API host (default: `api.openai.com`)
-- `EDITOR`: Editor to edit commit message (default: `vim`)
+- `EDITOR` or `VISUAL`: Editor to edit commit message (default: `vim`)
 
 installation instructions:
 
