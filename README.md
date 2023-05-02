@@ -27,4 +27,5 @@ Available env variables:
 - `EDITOR` or `VISUAL`: Editor to edit commit message (default: `vim`)
 - `GENIE_SUGESTIONS`: Number of suggestions to generate (default: `3`)
 - `GENIE_LENGTH`: Length of each suggestion (default: `medium`, can be `short`, `medium`, `long`, `verylong`)
+- `GENIE_MAX_TOKENS`: Maximum number of tokens to generate (overrides `GENIE_LENGTH`)
 - `GENIE_SKIP_EDIT`: Skip editing the commit message (default: `false`)

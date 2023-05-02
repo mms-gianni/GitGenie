@@ -25,20 +25,23 @@ func loadConfig() {
 	config.openAiApiToken = os.Getenv("OPENAI_API_KEY")
 	config.suggestions = getEnv("GENIE_SUGESTIONS", "3")
 	config.length = getEnv("GENIE_LENGTH", "medium")
-	//config.max_tokens = getEnv("GENIE_MAX_TOKENS", "300")
 	config.skipedit = getEnv("GENIE_SKIP_EDIT", "false")
 
-	switch config.length {
-	case "short":
-		config.max_tokens = "100"
-	case "medium":
-		config.max_tokens = "300"
-	case "long":
-		config.max_tokens = "500"
-	case "verylong":
-		config.max_tokens = "1000"
-	default:
-		config.max_tokens = "300"
+	if value, ok := os.LookupEnv("GENIE_MAX_TOKENS"); ok {
+		config.max_tokens = value
+	} else {
+		switch config.length {
+		case "short":
+			config.max_tokens = "100"
+		case "medium":
+			config.max_tokens = "300"
+		case "long":
+			config.max_tokens = "500"
+		case "verylong":
+			config.max_tokens = "1000"
+		default:
+			config.max_tokens = "300"
+		}
 	}
 }
 

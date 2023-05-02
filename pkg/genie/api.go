@@ -34,7 +34,7 @@ func SubmitToApi(diff string) []string {
 		"model": "text-davinci-003",
 		"prompt": "` + jsonPrompt + `",
 		"temperature": 1,
-		"max_tokens": 300,
+		"max_tokens": ` + config.max_tokens + `,
 		"top_p": 1,
 		"n": ` + config.suggestions + `,
 		"stream": false,
