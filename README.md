@@ -17,8 +17,10 @@ Available env variables:
 
 installation instructions:
 
-```bash
-curl https://raw.githubusercontent.com/roerohan/gitgenie/master/install.sh | bash
+Download the Archived binary from the [releases page]() and extract it to /usr/local/bin
+
+```bash 
+sudo tar -xvf git-genie.tar.gz -C /usr/local/bin
 
 export OPENAI_API_KEY=sk-y..............................
 ```
