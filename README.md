@@ -1,7 +1,7 @@
 <p align="center"><img src="docs/img/mascot.png" height="200" /></p>
 
 # GitGenie
-GitGenie is a git plugin that creates commit messages with ChatGPT.
+GitGenie is a git plugin that creates commit messages with ChatGPT. It is a replacement command for `git commit`. The shorthand gci stands for "generate commit" 
 
 ## Usage
     
