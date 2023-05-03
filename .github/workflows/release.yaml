@@ -19,7 +19,10 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
-
+    - name: Set version
+      id: version
+      run: |
+        echo ${GITHUB_REF#refs/tags/v} > cmd/VERSION
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
