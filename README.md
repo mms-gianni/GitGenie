@@ -62,3 +62,4 @@ Create a commit message in a different language and use a short commit message
 ```
 git gci -L de -l short
 ```
+
