@@ -39,7 +39,7 @@ func Run() {
 }
 
 func diff() string {
-	out, err := exec.Command("git", "diff", "--cached", "-u").Output()
+	out, err := exec.Command("git", "diff", "--cached", "--no-color", "-U10", "-u", "--ignore-space-at-eol", "--ignore-all-space", "--ignore-submodules").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
