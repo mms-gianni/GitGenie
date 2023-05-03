@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/mms-gianni/GitGenie/pkg/genie"
 	"github.com/spf13/cobra"
 )
 
@@ -15,13 +16,6 @@ GitGenie is a git plugin that creates commit messages with ChatGPT.`,
 	Run: func(cmd *cobra.Command, args []string) {},
 }
 
-func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
-}
-
 var Suggestions string
 var Length string
 var Signoff bool
@@ -30,6 +24,25 @@ var OpenAiApiHost string
 var OpenAiApiToken string
 var MaxTokens string
 var Language string
+
+func Execute() *genie.Config {
+	err := rootCmd.Execute()
+	if err != nil {
+		os.Exit(1)
+	}
+
+	config := &genie.Config{
+		OpenAiApiHost:  OpenAiApiHost,
+		OpenAiApiToken: OpenAiApiToken,
+		Suggestions:    Suggestions,
+		Length:         Length,
+		Max_tokens:     MaxTokens,
+		Skipedit:       Fast,
+		Language:       Language,
+	}
+
+	return config
+}
 
 func init() {
 	OpenAiApiHost = getEnv("OPENAI_API_HOST", "api.openai.com")
@@ -50,25 +63,9 @@ func init() {
 	}
 	rootCmd.Flags().BoolVarP(&Fast, "fast", "f", Fast, "Skip editing the commit message")
 
-	if value, ok := os.LookupEnv("GENIE_MAX_TOKENS"); ok {
-		MaxTokens = value
-	} else {
-		switch Length {
-		case "short":
-			MaxTokens = "100"
-		case "medium":
-			MaxTokens = "300"
-		case "long":
-			MaxTokens = "500"
-		case "verylong":
-			MaxTokens = "1000"
-		default:
-			MaxTokens = "300"
-		}
-	}
-
 	Language = getEnv("GENIE_LANGUAGE", "en")
 	rootCmd.Flags().StringVarP(&Language, "language", "L", Language, "Commit message language: en, ch, de, es, fr, it, ja, ko, pt, zh")
+
 }
 
 func getEnv(key string, fallback string) string {

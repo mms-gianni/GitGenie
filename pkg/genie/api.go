@@ -3,6 +3,7 @@ package genie
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -15,10 +16,10 @@ var commitMessages []string
 
 func initClient() *resty.Request {
 
-	client = resty.New().SetBaseURL("https://"+config.openAiApiHost).R().
+	client = resty.New().SetBaseURL("https://"+config.OpenAiApiHost).R().
 		EnableTrace().
 		SetAuthScheme("Bearer").
-		SetAuthToken(config.openAiApiToken).
+		SetAuthToken(config.OpenAiApiToken).
 		SetHeader("Accept", "application/json").
 		SetHeader("Content-Type", "application/json").
 		SetHeader("User-Agent", "git-genie/0.0.1")
@@ -66,10 +67,28 @@ func submitToApi(diff string) []string {
 */
 
 func submitToApiChat(diff string) []string {
-	var prompt string = getUser(config.language) + "\n\n" + diff
-	var system string = getSystem(config.language)
+	var prompt string = getUser(config.Language) + "\n\n" + diff
+	var system string = getSystem(config.Language)
 	var jsonPrompt string = jsonEscape(prompt)
 	var ChatCompletionResponse ChatCompletionResponse
+
+	if value, ok := os.LookupEnv("GENIE_MAX_TOKENS"); ok {
+		config.Max_tokens = value
+	} else {
+		switch config.Length {
+		case "short":
+			config.Max_tokens = "50"
+		case "medium":
+			config.Max_tokens = "302"
+		case "long":
+			config.Max_tokens = "500"
+		case "verylong":
+			config.Max_tokens = "1000"
+		default:
+			config.Max_tokens = "301"
+		}
+	}
+
 	var body = `{
 		"model": "gpt-3.5-turbo",
 		"messages": [
@@ -83,9 +102,9 @@ func submitToApiChat(diff string) []string {
 			}
 		],
 		"temperature": 1,
-		"max_tokens": ` + config.max_tokens + `,
+		"max_tokens": ` + config.Max_tokens + `,
 		"top_p": 1,
-		"n": ` + config.suggestions + `,
+		"n": ` + config.Suggestions + `,
 		"stream": false,
 		"frequency_penalty": 0,
 		"presence_penalty": 0

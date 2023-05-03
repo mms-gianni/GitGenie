@@ -6,33 +6,23 @@ import (
 	"os/exec"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/mms-gianni/GitGenie/cmd"
 )
 
 var config *Config
 
 type Config struct {
-	openAiApiHost  string
-	openAiApiToken string
-	suggestions    string
-	length         string
-	max_tokens     string
-	skipedit       bool
-	language       string
+	OpenAiApiHost  string
+	OpenAiApiToken string
+	Suggestions    string
+	Length         string
+	Max_tokens     string
+	Skipedit       bool
+	Language       string
 }
 
-func LoadConfig() {
-
-	config = &Config{}
-	config.openAiApiHost = cmd.OpenAiApiHost
-	config.openAiApiToken = cmd.OpenAiApiToken
-	config.suggestions = cmd.Suggestions
-	config.length = cmd.Length
-	config.skipedit = cmd.Fast
-	config.max_tokens = cmd.MaxTokens
-	config.language = cmd.Language
+func Init(c *Config) {
+	config = c
 	loadFromLanguageYaml()
-
 }
 
 func Run() {
@@ -90,7 +80,7 @@ func selectCommitMessage(options []string) string {
 
 func editCommitMessage(commitMsg string) string {
 
-	if config.skipedit && commitMsg != "" {
+	if config.Skipedit && commitMsg != "" {
 		return commitMsg
 	}
 
