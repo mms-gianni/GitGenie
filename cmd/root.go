@@ -29,6 +29,7 @@ var Fast bool
 var OpenAiApiHost string
 var OpenAiApiToken string
 var MaxTokens string
+var Language string
 
 func init() {
 	OpenAiApiHost = getEnv("OPENAI_API_HOST", "api.openai.com")
@@ -65,6 +66,9 @@ func init() {
 			MaxTokens = "300"
 		}
 	}
+
+	Language = getEnv("GENIE_LANGUAGE", "en")
+	rootCmd.Flags().StringVarP(&Length, "language", "L", Language, "Commit message language: en, de, es, fr, it, ja, ko, pt, zh")
 }
 
 func getEnv(key string, fallback string) string {
