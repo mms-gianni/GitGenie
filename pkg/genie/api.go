@@ -26,46 +26,6 @@ func initClient() *resty.Request {
 	return client
 }
 
-/* This method is much cheaper and the result is not better than the other one
-func submitToApi(diff string) []string {
-
-	var prompt string = "You are a programmer and want to commit this code. Describe the code changes in one sentence.\n\n" + diff
-	var jsonPrompt string = jsonEscape(prompt)
-	var CompletionResponse CompletionResponse
-	var body = `{
-		"model": "text-davinci-003",
-		"prompt": "` + jsonPrompt + `",
-		"temperature": 1,
-		"max_tokens": ` + config.max_tokens + `,
-		"top_p": 1,
-		"n": ` + config.suggestions + `,
-		"stream": false,
-		"echo": false,
-		"frequency_penalty": 0,
-		"presence_penalty": 0
-	  }
-	  `
-	client.SetBody(body)
-	client.SetResult(&CompletionResponse)
-
-	s := spinner.New()
-	s.Start("Loading commit messages...")
-	resp, err := client.Post("/v1/completions")
-	if err != nil {
-		s.Error("Error loading commit messages[" + resp.Status() + "]")
-		panic(err)
-	}
-	s.Success("Commit messages loaded [" + resp.Status() + "]")
-
-	for _, choice := range CompletionResponse.Choices {
-		commitMessages = append(commitMessages, strings.TrimLeft(choice.Text, "\n"))
-	}
-	commitMessages = append(commitMessages, "<empty>")
-
-	return commitMessages
-}
-*/
-
 func submitToApiChat(diff string) []string {
 	var prompt string = getUser(config.Language) + "\n\n" + diff
 	var system string = getSystem(config.Language)
