@@ -18,6 +18,7 @@ type Config struct {
 	Max_tokens     string
 	Skipedit       bool
 	Language       string
+	Signoff        bool
 }
 
 func Init(c *Config) {
@@ -30,7 +31,6 @@ func Run() {
 	initClient()
 	diff := diff()
 
-	//commitMessages := SubmitToApi(diff)
 	commitMessages := submitToApiChat(diff)
 	commitMessage := selectCommitMessage(commitMessages)
 	commitMessage = editCommitMessage(commitMessage)
@@ -97,7 +97,12 @@ func editCommitMessage(commitMsg string) string {
 }
 
 func commit(commitMsg string) {
-	out, err := exec.Command("git", "commit", "-m", commitMsg).Output()
+	signoff := "--no-signoff"
+	if config.Signoff {
+		signoff = "--signoff"
+	}
+
+	out, err := exec.Command("git", "commit", signoff, "-m", commitMsg).Output()
 	if err != nil {
 		fmt.Println(err)
 	}

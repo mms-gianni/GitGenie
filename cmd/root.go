@@ -39,6 +39,7 @@ func Execute() *genie.Config {
 		Max_tokens:     MaxTokens,
 		Skipedit:       Fast,
 		Language:       Language,
+		Signoff:        Signoff,
 	}
 
 	return config
