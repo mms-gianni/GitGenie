@@ -34,3 +34,4 @@ Available env variables:
 - `GENIE_LENGTH`: Length of each suggestion (default: `medium`, can be `short`, `medium`, `long`, `verylong`)
 - `GENIE_MAX_TOKENS`: Maximum number of tokens to generate (overrides `GENIE_LENGTH`)
 - `GENIE_SKIP_EDIT`: Skip editing the commit message (default: `false`)
+- `GENIE_LANGUAGE`: Language to use for the commit message (default: `en`, can be `en`, `ch`, `de`, `es`, `fr`, `it`, `ja`, `ko`, `pt`, `ru`, `zh`)
