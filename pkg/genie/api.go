@@ -14,7 +14,6 @@ var client *resty.Request
 var commitMessages []string
 
 func InitClient() *resty.Request {
-	loadConfig()
 
 	client = resty.New().SetBaseURL("https://"+config.openAiApiHost).R().
 		EnableTrace().

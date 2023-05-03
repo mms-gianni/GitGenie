@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/mms-gianni/GitGenie/cmd"
 	"github.com/mms-gianni/GitGenie/pkg/genie"
 )
 
@@ -12,8 +13,12 @@ var (
 )
 
 func main() {
+
+	cmd.Execute()
+
 	//genie.Status()
 
+	genie.LoadConfig()
 	genie.InitClient()
 	diff := genie.Diff()
 
