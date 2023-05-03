@@ -68,7 +68,7 @@ func init() {
 	}
 
 	Language = getEnv("GENIE_LANGUAGE", "en")
-	rootCmd.Flags().StringVarP(&Length, "language", "L", Language, "Commit message language: en, de, es, fr, it, ja, ko, pt, zh")
+	rootCmd.Flags().StringVarP(&Language, "language", "L", Language, "Commit message language: en, ch, de, es, fr, it, ja, ko, pt, zh")
 }
 
 func getEnv(key string, fallback string) string {

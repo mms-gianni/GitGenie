@@ -18,6 +18,7 @@ type Config struct {
 	length         string
 	max_tokens     string
 	skipedit       bool
+	language       string
 }
 
 func LoadConfig() {
@@ -29,6 +30,9 @@ func LoadConfig() {
 	config.length = cmd.Length
 	config.skipedit = cmd.Fast
 	config.max_tokens = cmd.MaxTokens
+	config.language = cmd.Language
+
+	loadFromLanguageYaml()
 
 }
 

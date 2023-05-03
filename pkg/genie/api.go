@@ -64,7 +64,8 @@ func SubmitToApi(diff string) []string {
 }
 
 func SubmitToApiChat(diff string) []string {
-	var prompt string = "Describe the code changes in one sentence.\n\n" + diff
+	var prompt string = getUser(config.language) + "\n\n" + diff
+	var system string = getSystem(config.language)
 	var jsonPrompt string = jsonEscape(prompt)
 	var ChatCompletionResponse ChatCompletionResponse
 	var body = `{
@@ -72,7 +73,7 @@ func SubmitToApiChat(diff string) []string {
 		"messages": [
 			{
 				"role": "system", 
-				"content": "You are a programmer. Generate Git commit messages based on the provided changes."
+				"content": "` + system + `"
 			},
 			{
 				"role": "user", 
