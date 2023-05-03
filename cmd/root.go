@@ -1,11 +1,15 @@
 package cmd
 
 import (
+	_ "embed"
 	"os"
 
 	"github.com/mms-gianni/GitGenie/pkg/genie"
 	"github.com/spf13/cobra"
 )
+
+//go:embed VERSION
+var Version string
 
 var rootCmd = &cobra.Command{
 	Use:   "git gci",
@@ -14,6 +18,8 @@ var rootCmd = &cobra.Command{
 	
 GitGenie is a git plugin that creates commit messages with ChatGPT.`,
 	Run: func(cmd *cobra.Command, args []string) {},
+
+	Version: Version,
 }
 
 var Suggestions string
