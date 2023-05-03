@@ -14,8 +14,8 @@ var (
 
 func main() {
 
-	cmd.Execute()
-	genie.LoadConfig()
+	config := cmd.Execute()
+	genie.Init(config)
 	genie.Run()
 
 }
