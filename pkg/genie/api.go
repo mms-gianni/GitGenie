@@ -25,6 +25,7 @@ func initClient() *resty.Request {
 	return client
 }
 
+/* This method is much cheaper and the result is not better than the other one
 func submitToApi(diff string) []string {
 
 	var prompt string = "You are a programmer and want to commit this code. Describe the code changes in one sentence.\n\n" + diff
@@ -62,6 +63,7 @@ func submitToApi(diff string) []string {
 
 	return commitMessages
 }
+*/
 
 func submitToApiChat(diff string) []string {
 	var prompt string = getUser(config.language) + "\n\n" + diff
