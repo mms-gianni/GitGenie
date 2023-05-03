@@ -23,6 +23,7 @@ type Config struct {
 
 func LoadConfig() {
 
+	loadFromLanguageYaml()
 	config = &Config{}
 	config.openAiApiHost = cmd.OpenAiApiHost
 	config.openAiApiToken = cmd.OpenAiApiToken
@@ -32,33 +33,47 @@ func LoadConfig() {
 	config.max_tokens = cmd.MaxTokens
 	config.language = cmd.Language
 
-	loadFromLanguageYaml()
-
 }
 
-func Diff() string {
+func Run() {
+
+	initClient()
+	diff := diff()
+
+	//commitMessages := SubmitToApi(diff)
+	commitMessages := submitToApiChat(diff)
+	commitMessage := selectCommitMessage(commitMessages)
+	commitMessage = editCommitMessage(commitMessage)
+
+	commit(commitMessage)
+}
+
+func diff() string {
 	out, err := exec.Command("git", "diff", "--cached", "-u").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	if len(out) == 0 {
-		fmt.Println("No changes to commit")
+		fmt.Print("No changes to commit\n\n")
+
+		status()
 		os.Exit(1)
 	}
 
 	return string(out)
 }
 
-func Status() {
-	out, err := exec.Command("git", "status", "-s", "-uno").Output()
+func status() {
+	//out, err := exec.Command("git", "status", "-s", "-uno").Output()
+	out, err := exec.Command("git", "status").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(string(out))
 }
 
-func SelectCommitMessage(options []string) string {
+func selectCommitMessage(options []string) string {
 	msg := ""
 	prompt := &survey.Select{
 		Message: "Select a commit message:",
@@ -73,7 +88,7 @@ func SelectCommitMessage(options []string) string {
 	return msg
 }
 
-func EditCommitMessage(commitMsg string) string {
+func editCommitMessage(commitMsg string) string {
 
 	if config.skipedit && commitMsg != "" {
 		return commitMsg
@@ -91,7 +106,7 @@ func EditCommitMessage(commitMsg string) string {
 	return editedCommitMsg
 }
 
-func Commit(commitMsg string) {
+func commit(commitMsg string) {
 	out, err := exec.Command("git", "commit", "-m", commitMsg).Output()
 	if err != nil {
 		fmt.Println(err)

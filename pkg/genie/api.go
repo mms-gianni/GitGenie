@@ -13,7 +13,7 @@ var client *resty.Request
 
 var commitMessages []string
 
-func InitClient() *resty.Request {
+func initClient() *resty.Request {
 
 	client = resty.New().SetBaseURL("https://"+config.openAiApiHost).R().
 		EnableTrace().
@@ -25,7 +25,7 @@ func InitClient() *resty.Request {
 	return client
 }
 
-func SubmitToApi(diff string) []string {
+func submitToApi(diff string) []string {
 
 	var prompt string = "You are a programmer and want to commit this code. Describe the code changes in one sentence.\n\n" + diff
 	var jsonPrompt string = jsonEscape(prompt)
@@ -63,7 +63,7 @@ func SubmitToApi(diff string) []string {
 	return commitMessages
 }
 
-func SubmitToApiChat(diff string) []string {
+func submitToApiChat(diff string) []string {
 	var prompt string = getUser(config.language) + "\n\n" + diff
 	var system string = getSystem(config.language)
 	var jsonPrompt string = jsonEscape(prompt)

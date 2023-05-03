@@ -14,19 +14,8 @@ var (
 
 func main() {
 
-	cmd.Execute()
-
-	//genie.Status()
-
 	genie.LoadConfig()
-	genie.InitClient()
-	diff := genie.Diff()
-
-	//commitMessages := genie.SubmitToApi(diff)
-	commitMessages := genie.SubmitToApiChat(diff)
-	commitMessage := genie.SelectCommitMessage(commitMessages)
-	commitMessage = genie.EditCommitMessage(commitMessage)
-
-	genie.Commit(commitMessage)
+	cmd.Execute()
+	genie.Run()
 
 }
