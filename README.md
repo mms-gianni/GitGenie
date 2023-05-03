@@ -5,6 +5,9 @@ GitGenie is a git plugin that creates commit messages suggestions with ChatGPT. 
 
 Not happy with the suggested commit message? No problem, GitGenie will open your editor and let you edit the commit message or leave it empty.
 
+> **Note**
+> Help needed: There are binaries for Linux and Windows (ARM and x86_64). I have only a Mac(x86_64) to test the binaries. If you have a Windows/Linux or ARM architecture [please let me know in the issues section](https://github.com/kubero-dev/GitGenie/issues/2) if it works.
+
 ## Usage
     
 ```bash
@@ -28,7 +31,7 @@ Flags:
 
 ## Installation
 
-Download the archived binary for you operating system from the [releases page](https://github.com/mms-gianni/GitGenie/releases/latest) and extract it to /usr/local/bin or any other directory in your PATH.
+Download the binary for you operating system from the [releases page](https://github.com/mms-gianni/GitGenie/releases/latest) and extract it to /usr/local/bin or any other directory in your PATH.
 
 ```bash 
 tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
@@ -52,7 +55,7 @@ Add the OpenAI Key ENV your .bashrc or .zshrc and configure your Genie with the 
 
 Create a commit message with 5 suggestions and skip editing the commit message
 ```
-git gci -n 5 -e
+git gci -n 5 -f
 ```
 
 Create a commit message in a different language and use a short commit message
