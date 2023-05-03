@@ -1,7 +1,7 @@
 <p align="center"><img src="docs/img/mascot.png" height="200" /></p>
 
 # GitGenie
-GitGenie is a git plugin that creates commit messages with ChatGPT. It is a replacement command for `git commit`. The shorthand gci stands for "generate commit" 
+GitGenie is a git plugin that creates commit messages suggestions with ChatGPT. It is a replacement command for `git commit`. The shorthand gci stands for "generate commit".
 
 Not happy with the suggested commit message? No problem, GitGenie will open your editor and let you edit the commit message or leave it empty.
 
@@ -28,7 +28,7 @@ Flags:
 
 ## Installation
 
-Download the Archived binary for you operating system from the [releases page](https://github.com/mms-gianni/GitGenie/releases/latest) and extract it to /usr/local/bin or any other directory in your PATH.
+Download the archived binary for you operating system from the [releases page](https://github.com/mms-gianni/GitGenie/releases/latest) and extract it to /usr/local/bin or any other directory in your PATH.
 
 ```bash 
 tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
