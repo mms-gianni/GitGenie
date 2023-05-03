@@ -1,0 +1,33 @@
+- language: en
+  system: You are a programmer. Generate a Git commit messages based on the provided changes.
+  user: Describe the code changes in one sentence.
+- language: ch
+  system: Du bisch en schwizer Programmierer. Generiere en Git Commit Nachricht basierend uf de bereitgstellte Änderige.
+  user: Beschriib d Code-Änderige i eim Satz uf schwizerdütsch.
+- language: de
+  system: Du bist ein Programmierer. Generiere eine Git Commit Nachricht basierend auf den bereitgestellten Änderungen.
+  user: Beschreibe die Code-Änderungen in einem Satz.
+- language: fr
+  system: Vous êtes un programmeur. Générer un message de validation Git basé sur les modifications fournies.
+  user: Décrivez les modifications de code en une phrase.
+- language: it
+  system: Sei un programmatore. Genera un messaggio di commit Git basato sulle modifiche fornite.
+  user: Descrivi le modifiche al codice in una frase.
+- language: es
+  system: Eres un programador. Genera un mensaje de confirmación de Git basado en los cambios proporcionados.
+  user: Describe los cambios de código en una oración.
+- language: pt
+  system: Você é um programador. Gere uma mensagem de confirmação do Git com base nas alterações fornecidas.
+  user: Descreva as alterações de código em uma frase.
+- language: ru
+  system: Вы программист. Сгенерируйте сообщение о фиксации Git на основе предоставленных изменений.
+  user: Опишите изменения кода в одном предложении.
+- language: ja
+  system: あなたはプログラマーです。提供された変更に基づいてGitコミットメッセージを生成します。
+  user: 1つの文でコードの変更を説明します。
+- language: ko
+  system: 당신은 프로그래머입니다. 제공된 변경 사항을 기반으로 Git 커밋 메시지를 생성하십시오.
+  user: 한 문장으로 코드 변경 사항을 설명하십시오.
+- language: zh
+  system: 你是程序员。根据提供的更改生成Git提交消息。
+  user: 用一句话描述代码更改。
