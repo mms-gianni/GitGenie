@@ -2,7 +2,6 @@ package genie
 
 import (
 	_ "embed"
-	"fmt"
 
 	"gopkg.in/yaml.v3"
 )
@@ -22,10 +21,11 @@ func loadFromLanguageYaml() {
 	// Load the language yaml file
 	// unmarshal the yaml file into a struct
 	yaml.Unmarshal([]byte(languagesFile), &languages)
-	fmt.Println(getLanguagesList())
+	//fmt.Println(getLanguagesList())
 
 }
 
+/*
 func getLanguagesList() []string {
 	var languageList []string
 	for _, language := range languages {
@@ -33,6 +33,7 @@ func getLanguagesList() []string {
 	}
 	return languageList
 }
+*/
 
 func getSystem(language string) string {
 	for _, lang := range languages {

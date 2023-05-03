@@ -20,12 +20,7 @@ tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
 export OPENAI_API_KEY=sk-y..............................
 ```
 
-Configure GitGenie in your .bashrc or .zshrc with the following env variables:
-
-
-### Configuration
-
-Available env variables:
+Add the OpenAI Key ENV your .bashrc or .zshrc and configure your Genie with the following additional ENV variables:
 
 - `OPENAI_API_KEY`: OpenAI API token **(required)**
 - `OPENAI_HOST`: OpenAI API host (default: `api.openai.com`)
