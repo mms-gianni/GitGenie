@@ -20,7 +20,10 @@ tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
 export OPENAI_API_KEY=sk-y..............................
 ```
 
-## Configuration
+Configure GitGenie in your .bashrc or .zshrc with the following env variables:
+
+
+### Configuration
 
 Available env variables:
 
