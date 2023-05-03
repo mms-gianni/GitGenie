@@ -23,7 +23,6 @@ type Config struct {
 
 func LoadConfig() {
 
-	loadFromLanguageYaml()
 	config = &Config{}
 	config.openAiApiHost = cmd.OpenAiApiHost
 	config.openAiApiToken = cmd.OpenAiApiToken
@@ -32,6 +31,7 @@ func LoadConfig() {
 	config.skipedit = cmd.Fast
 	config.max_tokens = cmd.MaxTokens
 	config.language = cmd.Language
+	loadFromLanguageYaml()
 
 }
 

@@ -55,7 +55,7 @@ Add the OpenAI Key ENV your .bashrc or .zshrc and configure your Genie with the 
 git gci -s 5 -e
 ```
 
-### Creaate a commit message in a different language
+### Creaate a commit message in a different language and use a short commit message
 ```
-git gci -l de
+git gci -L de -l short
 ```
