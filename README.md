@@ -52,6 +52,14 @@ Add the OpenAI Key ENV to your .bashrc or .zshrc and configure your Genie with t
 - `GENIE_SKIP_EDIT`: Skip editing the commit message (default: `false`)
 - `GENIE_LANGUAGE`: Language to use for the commit message (default: `en`, can be `en`, `ch`, `de`, `es`, `fr`, `it`, `ja`, `ko`, `pt`, `ru`, `zh`)
 
+## Privacy
+There may be many reasons a repository owner does not want to allow genie generated commit messages or code to be sent to a third party service. For this reason, the repository can be configured to block GitGenie completly.
+
+To block the genie, create a file called `.gitgenieblock` in the root of your repository and add the following content:
+
+```
+touch .gitgenieblock
+```
 
 ## Examples
 
