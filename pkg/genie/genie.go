@@ -108,3 +108,11 @@ func commit(commitMsg string) {
 	}
 	fmt.Println(string(out))
 }
+
+func getGitRoot() string {
+	out, err := exec.Command("git", "rev-parse", "--show-toplevel").Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+	return string(out)
+}
