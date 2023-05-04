@@ -25,16 +25,6 @@ func loadFromLanguageYaml() {
 
 }
 
-/*
-func getLanguagesList() []string {
-	var languageList []string
-	for _, language := range languages {
-		languageList = append(languageList, language.Language)
-	}
-	return languageList
-}
-*/
-
 func getSystem(language string) string {
 	for _, lang := range languages {
 		if lang.Language == language {
