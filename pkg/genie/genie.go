@@ -114,5 +114,6 @@ func getGitRoot() string {
 	if err != nil {
 		fmt.Println(err)
 	}
-	return string(out)
+	return strings.TrimRight(string(out), "\n")
+}
 }

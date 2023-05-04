@@ -29,7 +29,7 @@ func initClient() *resty.Request {
 func submitToApiChat(diff string) []string {
 	var gitRoot string = getGitRoot()
 	// check if file exists
-	if _, err := os.Stat(gitRoot + "/.gitgenieblock"); os.IsNotExist(err) {
+	if _, err := os.Stat(gitRoot + "/.gitgenieblock"); err == nil {
 		fmt.Println("This repository does not allow genie commits.")
 		os.Exit(1)
 	}
