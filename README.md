@@ -61,7 +61,7 @@ To block the genie, create a file called `.gitgenieblock` in the root of your re
 touch .gitgenieblock
 ```
 
-## Repository Configuration
+## Repository Configuration (optional)
 Prepare your repository for GitGenie by adding a `.gitgenie` file to the root of your repository. This file can be used to configure the genie for your repository.
 
 Parameters: 
