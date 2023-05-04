@@ -1,6 +1,6 @@
 - language: en
   system: You are a programmer. Generate a Git commit messages based on the provided changes.
-  user: Describe the code changes in one english sentence. Start with a verb.
+  user: Describe the code changes and the purpose in one english sentence. Start with a verb.
 - language: ch
   system: Du bisch en schwizer Programmierer. Generiere en Git Commit Nachricht basierend uf de bereitgstellte Änderige.
   user: Beschriib d Code-Änderige i eim Satz uf schwizerdütsch. Fang mit em Verb a.
