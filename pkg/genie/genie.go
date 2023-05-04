@@ -2,10 +2,13 @@ package genie
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
+	"gopkg.in/yaml.v3"
 )
 
 var config *Config
@@ -116,4 +119,27 @@ func getGitRoot() string {
 	}
 	return strings.TrimRight(string(out), "\n")
 }
+
+func (c *repoConfig) loadRepoConfig(gitRoot string) *repoConfig {
+	// read from config file
+
+	yamlFile, err := os.ReadFile(gitRoot + "/.gitgenie.yaml")
+	if err != nil {
+		c.Loaded = false
+		return c
+	}
+	err = yaml.Unmarshal(yamlFile, c)
+	if err != nil {
+		log.Fatalf("Unmarshal: %v", err)
+	}
+
+	fmt.Println("Loaded .gitgenie.yaml file")
+
+	return c
+}
+
+type repoConfig struct {
+	Loaded      bool   `yaml:"loaded"`
+	Lang        string `yaml:"lang"`
+	Description string `yaml:"description"`
 }

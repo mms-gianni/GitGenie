@@ -27,9 +27,13 @@ func initClient() *resty.Request {
 }
 
 func submitToApiChat(diff string) []string {
-	var gitRoot string = getGitRoot()
+	var gitRoot = getGitRoot()
+	var repoConfig repoConfig
+	repoConfig.loadRepoConfig(gitRoot)
+
 	// check if file exists
 	if _, err := os.Stat(gitRoot + "/.gitgenieblock"); err == nil {
+		fmt.Println(gitRoot + "/.gitgenieblock")
 		fmt.Println("This repository does not allow genie commits.")
 		os.Exit(1)
 	}
@@ -74,6 +78,10 @@ func submitToApiChat(diff string) []string {
 			{
 				"role": "system", 
 				"content": "` + system + `"
+			},
+			{
+				"role": "system", 
+				"content": "` + repoConfig.Description + `"
 			},
 			{
 				"role": "user", 
