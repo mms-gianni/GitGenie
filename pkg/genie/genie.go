@@ -123,7 +123,7 @@ func getGitRoot() string {
 func (c *repoConfig) loadRepoConfig(gitRoot string) *repoConfig {
 	// read from config file
 
-	yamlFile, err := os.ReadFile(gitRoot + "/.gitgenie.yaml")
+	yamlFile, err := os.ReadFile(gitRoot + "/.gitgenie")
 	if err != nil {
 		c.Loaded = false
 		return c
@@ -133,13 +133,11 @@ func (c *repoConfig) loadRepoConfig(gitRoot string) *repoConfig {
 		log.Fatalf("Unmarshal: %v", err)
 	}
 
-	fmt.Println("Loaded .gitgenie.yaml file")
-
 	return c
 }
 
 type repoConfig struct {
 	Loaded      bool   `yaml:"loaded"`
-	Lang        string `yaml:"lang"`
+	Language    string `yaml:"language"`
 	Description string `yaml:"description"`
 }

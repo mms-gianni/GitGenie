@@ -38,6 +38,10 @@ func submitToApiChat(diff string) []string {
 		os.Exit(1)
 	}
 
+	if repoConfig.Language != "" {
+		config.Language = repoConfig.Language
+	}
+
 	var prompt string = getUser(config.Language) + "\n\n" + diff
 	var system string = getSystem(config.Language)
 	var jsonPrompt string = jsonEscape(prompt)
@@ -97,6 +101,7 @@ func submitToApiChat(diff string) []string {
 		"presence_penalty": 0
 	  }
 	  `
+	//fmt.Println(body)
 	client.SetBody(body)
 	client.SetResult(&ChatCompletionResponse)
 

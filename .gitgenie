@@ -1,2 +1,2 @@
-language: de
+language: en
 description: A git plugin that creates commit message suggestions based on the changes you made.
