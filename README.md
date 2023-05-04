@@ -57,19 +57,26 @@ There may be many reasons a repository owner does not want to allow genie genera
 
 To block the genie, create a file called `.gitgenieblock` in the root of your repository and add the following content:
 
-```
+```bash
 touch .gitgenieblock
 ```
+
+## Repository Configuration
+Prepare your repository for GitGenie by adding a `.gitgenie` file to the root of your repository. This file can be used to configure the genie for your repository.
+
+Parameters: 
+- `language`: Language to use for the commit message (default: `en`, can be `en`, `ch`, `de`, `es`, `fr`, `it`, `ja`, `ko`, `pt`, `ru`, `zh`)
+- `description`: Description of the repository/software (default: `""`)
 
 ## Examples
 
 Create a commit message with 5 suggestions and skip editing the commit message
-```
+```bash
 git gci -n 5 -f
 ```
 
 Create a commit message in a different language and use a short commit message
-```
+```bash
 git gci -L de -l short
 ```
 
