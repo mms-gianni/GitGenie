@@ -1,12 +1,14 @@
 <p align="center"><img src="docs/img/mascot.png" height="200" /></p>
 
 # GitGenie
-GitGenie is a git plugin that creates commit messages suggestions with ChatGPT. It is a replacement command for `git commit`. The shorthand gci stands for "generate commit".
+Once upon a time, there was a magical genie who lived inside Git as a plugin. This genie loved to help developers write better commit messages when they changed their code.
 
-Not happy with the suggested commit message? No problem, GitGenie will open your editor and let you edit the commit message or leave it empty.
+The genie was very clever and used its magic ChatGPT powers to analyze the changes in the code and suggest good messages for the developers to use.
+
+And if the developers weren't happy with any of the suggestions, he would open an editor and give them the opportunity to adjust the suggestions to their liking.
 
 > **Note**
-> Help needed: There are binaries for Linux and Windows (ARM and x86_64). I have only a Mac(x86_64) to test the binaries. If you have a Windows/Linux or ARM architecture [please let me know in the issues section](https://github.com/kubero-dev/GitGenie/issues/2) if it works.
+> The genie needs your help: There are binaries for Linux and Windows (ARM and x86_64). I have only a Mac(x86_64) to test the binaries. If you have a Windows/Linux or ARM architecture [please let me know in the issues section](https://github.com/kubero-dev/GitGenie/issues/2) if it works.
 
 ## Usage
     
@@ -39,7 +41,7 @@ tar -xvzf GitGenie_Mac_x86_64.tar.gz -C /usr/local/bin
 export OPENAI_API_KEY=sk-y..............................
 ```
 
-Add the OpenAI Key ENV your .bashrc or .zshrc and configure your Genie with the following additional ENV variables to change the default behavior.
+Add the OpenAI Key ENV to your .bashrc or .zshrc and configure your Genie with the following additional ENV variables to change the default behavior.
 
 - `OPENAI_API_KEY`: OpenAI API token **(required)**
 - `OPENAI_HOST`: OpenAI API host (default: `api.openai.com`)
