@@ -2,6 +2,7 @@ package genie
 
 import (
 	_ "embed"
+	"fmt"
 
 	"gopkg.in/yaml.v3"
 )
@@ -41,4 +42,13 @@ func getUser(language string) string {
 		}
 	}
 	return ""
+}
+
+func GetLanguagesList() string {
+	var languageList string = ""
+	for _, language := range languages {
+		languageList = languageList + language.Language + ", "
+	}
+	fmt.Println(languages)
+	return languageList
 }

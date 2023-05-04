@@ -70,8 +70,9 @@ func init() {
 	}
 	rootCmd.Flags().BoolVarP(&Fast, "fast", "f", Fast, "Skip editing the commit message")
 
+	langlist := genie.GetLanguagesList()
 	Language = getEnv("GENIE_LANGUAGE", "en")
-	rootCmd.Flags().StringVarP(&Language, "language", "L", Language, "Commit message language: en, ch, de, es, fr, it, ja, ko, pt, zh")
+	rootCmd.Flags().StringVarP(&Language, "language", "L", Language, "Commit message language: ["+langlist+"]")
 
 }
 
