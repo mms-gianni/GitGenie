@@ -27,7 +27,7 @@ Flags:
   -s, --signoff              Add signing signature to commit message
   -n, --suggestions string   Number of suggestions to generate (default "3")
 ```
-
+<img src="docs/img/demo.gif" />
 
 ## Installation
 
