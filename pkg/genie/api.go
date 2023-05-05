@@ -51,25 +51,15 @@ func submitToApiChat(diff string) []string {
 		config.Max_tokens = value
 	} else {
 		switch config.Length {
-		case "veryshort":
-			config.Max_tokens = "20"
-		case "vs":
-			config.Max_tokens = "20"
-		case "short":
+		case "veryshort", "vs":
 			config.Max_tokens = "50"
-		case "s":
-			config.Max_tokens = "50"
-		case "medium":
+		case "short", "s":
+			config.Max_tokens = "100"
+		case "medium", "m":
 			config.Max_tokens = "300"
-		case "m":
-			config.Max_tokens = "300"
-		case "long":
+		case "long", "l":
 			config.Max_tokens = "500"
-		case "l":
-			config.Max_tokens = "500"
-		case "verylong":
-			config.Max_tokens = "1000"
-		case "vl":
+		case "verylong", "vl":
 			config.Max_tokens = "1000"
 		default:
 			config.Max_tokens = "301"
