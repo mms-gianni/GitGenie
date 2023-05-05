@@ -1,6 +1,13 @@
 <p align="center"><img src="docs/img/mascot.png" height="200" /></p>
 
 # GitGenie
+  
+  [![Go Report Card](https://goreportcard.com/badge/github.com/mms-gianni/GitGenie)](https://goreportcard.com/report/github.com/mms-gianni/GitGenie)
+  [![GoDoc](https://godoc.org/github.com/mms-gianni/GitGenie?status.svg)](https://godoc.org/github.com/mms-gianni/GitGenie)
+  [![GitHub release](https://img.shields.io/github/release/mms-gianni/GitGenie.svg)](https://godoc.org/github.com/mms-gianni/GitGenie)
+  ![GitHub license](https://img.shields.io/github/license/mms-gianni/GitGenie.svg)
+
+
 Once upon a time, there was a magical genie who lived inside Git as a plugin. This genie loved to help developers write better commit messages when they changed their code.
 
 The genie was very clever and used its magic ChatGPT powers to analyze the changes in the code and suggest good messages for the developers to use.
