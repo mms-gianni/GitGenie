@@ -111,7 +111,7 @@ func submitToApiChat(diff string) []string {
 	s.Success("Commit messages loaded [" + resp.Status() + "]")
 
 	for _, choice := range ChatCompletionResponse.Choices {
-		commitMessages = append(commitMessages, choice.Message.Content)
+		commitMessages = append(commitMessages, choice.Message.Content+"\n")
 	}
 	commitMessages = append(commitMessages, "<empty>")
 
