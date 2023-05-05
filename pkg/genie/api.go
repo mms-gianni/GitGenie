@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/leaanthony/spinner"
@@ -112,7 +111,7 @@ func submitToApiChat(diff string) []string {
 	s.Success("Commit messages loaded [" + resp.Status() + "]")
 
 	for _, choice := range ChatCompletionResponse.Choices {
-		commitMessages = append(commitMessages, strings.TrimLeft(choice.Message.Content, "\n"))
+		commitMessages = append(commitMessages, choice.Message.Content)
 	}
 	commitMessages = append(commitMessages, "<empty>")
 
