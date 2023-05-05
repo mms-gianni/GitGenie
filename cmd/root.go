@@ -31,11 +31,8 @@ var OpenAiApiToken string
 var MaxTokens string
 var Language string
 
-func Execute() *genie.Config {
+func Execute() (*genie.Config, error) {
 	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
 
 	config := &genie.Config{
 		OpenAiApiHost:  OpenAiApiHost,
@@ -46,9 +43,10 @@ func Execute() *genie.Config {
 		Skipedit:       Fast,
 		Language:       Language,
 		Signoff:        Signoff,
+		Debug:          false,
 	}
 
-	return config
+	return config, err
 }
 
 func init() {
@@ -72,6 +70,8 @@ func init() {
 
 	Language = getEnv("GENIE_LANGUAGE", "en")
 	rootCmd.Flags().StringVarP(&Language, "language", "L", Language, "Commit message language: en, ch, de, es, fr, it, ja, ko, pt, zh")
+
+	rootCmd.Flags().BoolVarP(&Fast, "debug", "d", Fast, "Print debug information")
 
 }
 

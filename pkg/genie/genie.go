@@ -2,10 +2,11 @@ package genie
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"strings"
+
+	log "github.com/pieterclaerhout/go-log"
 
 	"github.com/AlecAivazis/survey/v2"
 	"gopkg.in/yaml.v3"
@@ -22,16 +23,22 @@ type Config struct {
 	Skipedit       bool
 	Language       string
 	Signoff        bool
+	Debug          bool
 }
 
 func Init(c *Config) {
 	config = c
 	loadFromLanguageYaml()
+	initClient()
+
+	if config.Debug {
+		log.DebugMode = true
+		fmt.Printf("Config %+v\n", config)
+	}
 }
 
 func Run() {
 
-	initClient()
 	diff := diff()
 
 	commitMessages := submitToApiChat(diff)

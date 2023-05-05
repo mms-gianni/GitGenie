@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-resty/resty/v2"
 	"github.com/leaanthony/spinner"
+	"github.com/pieterclaerhout/go-log"
 )
 
 var client *resty.Request
@@ -91,7 +92,7 @@ func submitToApiChat(diff string) []string {
 		"presence_penalty": 0
 	  }
 	  `
-	//fmt.Println(body)
+	log.DebugDump("Request Body", body)
 	client.SetBody(body)
 	client.SetResult(&ChatCompletionResponse)
 
@@ -107,6 +108,7 @@ func submitToApiChat(diff string) []string {
 		fmt.Println(body)
 		panic(string(resp.Body()))
 	}
+	log.DebugDump("Response Body", string(resp.Body()))
 	s.Success("Commit messages loaded [" + resp.Status() + "]")
 
 	for _, choice := range ChatCompletionResponse.Choices {
