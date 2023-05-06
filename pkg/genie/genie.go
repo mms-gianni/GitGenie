@@ -106,6 +106,16 @@ func editCommitMessage(commitMsg string) string {
 	return editedCommitMsg
 }
 
+func getLogs() []string {
+	out, err := exec.Command("git", "log", "--pretty=\"format:%s\"", "-n", "5").Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	split := strings.Split(string(out), "\n")
+	return split
+}
+
 func commit(commitMsg string) {
 	signoff := "--no-signoff"
 	if config.Signoff {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-resty/resty/v2"
 	"github.com/leaanthony/spinner"
-	"github.com/pieterclaerhout/go-log"
+	log "github.com/pieterclaerhout/go-log"
 )
 
 var client *resty.Request
@@ -66,22 +66,35 @@ func submitToApiChat(diff string) []string {
 		}
 	}
 
+	var messages = []Message{
+		{
+			Role:    "system",
+			Content: system,
+		},
+		{
+			Role:    "system",
+			Content: repoConfig.Description,
+		},
+	}
+
+	var commitLog = getLogs()
+	for _, entry := range commitLog {
+		messages = append(messages, Message{
+			Role:    "assistant",
+			Content: entry,
+		})
+	}
+
+	messages = append(messages, Message{
+		Role:    "user",
+		Content: jsonPrompt,
+	})
+
+	m, _ := json.Marshal(messages)
+
 	var body = `{
 		"model": "gpt-3.5-turbo",
-		"messages": [
-			{
-				"role": "system", 
-				"content": "` + system + `"
-			},
-			{
-				"role": "system", 
-				"content": "` + repoConfig.Description + `"
-			},
-			{
-				"role": "user", 
-				"content": "` + jsonPrompt + `"
-			}
-		],
+		"messages": ` + string(m) + `,
 		"temperature": 1,
 		"max_tokens": ` + config.Max_tokens + `,
 		"top_p": 1,
@@ -90,8 +103,9 @@ func submitToApiChat(diff string) []string {
 		"frequency_penalty": 0,
 		"presence_penalty": 0
 	  }
-	  `
+	`
 	log.DebugDump("Request Body", body)
+
 	client.SetBody(body)
 	client.SetResult(&ChatCompletionResponse)
 
@@ -116,6 +130,11 @@ func submitToApiChat(diff string) []string {
 	commitMessages = append(commitMessages, "<empty>")
 
 	return commitMessages
+}
+
+type Message struct {
+	Role    string `json:"role"`
+	Content string `json:"content"`
 }
 
 type CompletionResponse struct {
