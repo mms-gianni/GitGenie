@@ -60,6 +60,7 @@ Add the OpenAI Key ENV to your .bashrc or .zshrc and configure your Genie with t
 - `GENIE_MAX_TOKENS`: Maximum number of tokens to generate (overrides `GENIE_LENGTH`)
 - `GENIE_SKIP_EDIT`: Skip editing the commit message (default: `false`)
 - `GENIE_LANGUAGE`: Language to use for the commit message (default: `en`, can be `en`, `ch`, `de`, `es`, `fr`, `it`, `ja`, `ko`, `pt`, `ru`, `zh`)
+- `GENIE_DIFFCONTEXT`: Number of lines of context to use for the diff (default: `5`)
 
 ## Privacy
 There may be many reasons a repository owner does not want to allow genie generated commit messages or code to be sent to a third party service. For this reason, the repository can be configured to block GitGenie completly.

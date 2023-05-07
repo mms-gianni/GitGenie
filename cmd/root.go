@@ -31,6 +31,7 @@ var OpenAiApiToken string
 var MaxTokens string
 var Language string
 var Debug bool
+var Diffcontext string
 
 func Execute() (*genie.Config, error) {
 	err := rootCmd.Execute()
@@ -45,6 +46,7 @@ func Execute() (*genie.Config, error) {
 		Language:       Language,
 		Signoff:        Signoff,
 		Debug:          Debug,
+		Diffcontext:    Diffcontext,
 	}
 
 	return config, err
@@ -57,6 +59,9 @@ func init() {
 	OpenAiApiToken = os.Getenv("OPENAI_API_KEY")
 
 	rootCmd.Flags().BoolVarP(&Signoff, "signoff", "s", false, "Add signing signature to commit message")
+
+	Diffcontext = getEnv("GENIE_DIFFCONTEXT", "5")
+	rootCmd.Flags().StringVarP(&Diffcontext, "diffcontext", "c", Diffcontext, "Number of lines befor and after the diff")
 
 	Suggestions = getEnv("GENIE_SUGESTIONS", "3")
 	rootCmd.Flags().StringVarP(&Suggestions, "suggestions", "n", Suggestions, "Number of suggestions to generate")

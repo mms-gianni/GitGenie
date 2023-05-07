@@ -24,6 +24,7 @@ type Config struct {
 	Language       string
 	Signoff        bool
 	Debug          bool
+	Diffcontext    string
 }
 
 func Init(c *Config) {
@@ -49,7 +50,7 @@ func Run() {
 }
 
 func diff() string {
-	out, err := exec.Command("git", "diff", "--cached", "--no-color", "-U5", "-u", "--ignore-space-at-eol", "--ignore-all-space", "--ignore-submodules").Output()
+	out, err := exec.Command("git", "diff", "--cached", "--no-color", "-U"+config.Diffcontext, "-u", "--ignore-space-at-eol", "--ignore-all-space", "--ignore-submodules").Output()
 	if err != nil {
 		fmt.Println(err)
 	}
