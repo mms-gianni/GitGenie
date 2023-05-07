@@ -26,17 +26,20 @@ func initClient() *resty.Request {
 	return client
 }
 
+func checkBlocklist(gitRoot string) {
+	b, _ := os.ReadFile(gitRoot + "/.gitgenieblock") // just pass the file name
+	if string(b) == "https://github.com/kubero-dev/GitGenie" {
+		fmt.Println("This repository does not allow genie commits.")
+		os.Exit(1)
+	}
+}
+
 func submitToApiChat(diff string) []string {
 	var gitRoot = getGitRoot()
 	var repoConfig repoConfig
 	repoConfig.loadRepoConfig(gitRoot)
 
-	// check if file exists
-	if _, err := os.Stat(gitRoot + "/.gitgenieblock"); err == nil {
-		fmt.Println(gitRoot + "/.gitgenieblock")
-		fmt.Println("This repository does not allow genie commits.")
-		os.Exit(1)
-	}
+	checkBlocklist(gitRoot)
 
 	if repoConfig.Language != "" {
 		config.Language = repoConfig.Language

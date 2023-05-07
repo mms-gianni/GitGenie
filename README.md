@@ -4,8 +4,8 @@
   
   [![Go Report Card](https://goreportcard.com/badge/github.com/mms-gianni/GitGenie)](https://goreportcard.com/report/github.com/mms-gianni/GitGenie)
   [![GoDoc](https://godoc.org/github.com/mms-gianni/GitGenie?status.svg)](https://godoc.org/github.com/mms-gianni/GitGenie)
-  [![GitHub release](https://img.shields.io/github/release/mms-gianni/GitGenie.svg)](https://godoc.org/github.com/mms-gianni/GitGenie)
-  ![GitHub license](https://img.shields.io/github/license/mms-gianni/GitGenie.svg)
+  [![GitHub release](https://img.shields.io/github/release/mms-gianni/GitGenie.svg)](https://github.com/kubero-dev/GitGenie/releases/)
+  [![GitHub license](https://img.shields.io/github/license/mms-gianni/GitGenie.svg)](https://github.com/kubero-dev/GitGenie/blob/main/LICENSE)
 
 
 Once upon a time, there was a magical genie who lived inside Git as a plugin. This genie loved to help developers write better commit messages when they changed their code.
@@ -28,6 +28,7 @@ git gci
 git gci [flags]
 
 Flags:
+  -d, --debug                Print debug information
   -f, --fast                 Skip editing the commit message
   -h, --help                 help for git
   -H, --host string          OpenAI API host (default "api.openai.com")
@@ -35,6 +36,7 @@ Flags:
   -l, --length string        Commit message length: short, medium, long, verylong (default "medium")
   -s, --signoff              Add signing signature to commit message
   -n, --suggestions string   Number of suggestions to generate (default "3")
+  -v, --version              version for git
 ```
 <img src="docs/img/demo.gif" />
 
@@ -65,7 +67,7 @@ There may be many reasons a repository owner does not want to allow genie genera
 To block the genie, create a file called `.gitgenieblock` in the root of your repository and add the following content:
 
 ```bash
-touch .gitgenieblock
+echo "https://github.com/kubero-dev/GitGenie" > .gitgenieblock
 ```
 
 ## Repository Configuration (optional)
