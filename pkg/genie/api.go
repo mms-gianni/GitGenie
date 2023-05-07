@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/leaanthony/spinner"
@@ -27,10 +28,10 @@ func initClient() *resty.Request {
 }
 
 func checkBlocklist(gitRoot string) {
-	b, _ := os.ReadFile(gitRoot + "/.gitgenieblock") // just pass the file name
-	if string(b) == "https://github.com/kubero-dev/GitGenie" {
+	block, _ := os.ReadFile(gitRoot + "/.gitgenieblock")
+	if strings.Contains(string(block), "https://github.com/kubero-dev/GitGenie") {
 		fmt.Println("This repository does not allow genie commits.")
-		os.Exit(1)
+		os.Exit(0)
 	}
 }
 
