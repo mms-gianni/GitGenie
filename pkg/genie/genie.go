@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 
 	log "github.com/pieterclaerhout/go-log"
@@ -91,6 +92,11 @@ func selectCommitMessage(options []string) string {
 
 func editCommitMessage(commitMsg string) string {
 
+	ticket := getTicket()
+	if ticket != "" {
+		fmt.Println("Found Ticket: " + ticket)
+	}
+
 	if config.Skipedit && commitMsg != "" {
 		return commitMsg
 	}
@@ -98,7 +104,7 @@ func editCommitMessage(commitMsg string) string {
 	editedCommitMsg := commitMsg
 	prompt := &survey.Editor{
 		Message:       "Edit commit message:",
-		Default:       commitMsg,
+		Default:       ticket + " " + commitMsg,
 		HideDefault:   true,
 		AppendDefault: true,
 	}
@@ -130,6 +136,23 @@ func commit(commitMsg string) {
 		fmt.Println(err)
 	}
 	fmt.Println(string(out))
+}
+
+func getBranch() string {
+	out, err := exec.Command("git", "branch", "--show-current").Output()
+	//out, err := exec.Command("git", "rev-parse", "--abbrev-ref", "HEAD").Output()
+	if err != nil {
+		fmt.Println(err)
+	}
+	return strings.TrimRight(string(out), "\n")
+}
+
+func getTicket() string {
+	var branch string = getBranch()
+	r, _ := regexp.Compile(`^([A-Z]+-\d+).*`) // Matches only JIRA tickets for now
+	matches := r.FindStringSubmatch(branch)
+	var ticket string = string(matches[1])
+	return ticket
 }
 
 func getGitRoot() string {
