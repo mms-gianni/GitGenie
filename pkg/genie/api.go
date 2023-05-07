@@ -80,15 +80,15 @@ func submitToApiChat(diff string) []string {
 			Content: repoConfig.Description,
 		},
 	}
-
-	var commitLog = getLogs()
-	for _, entry := range commitLog {
-		messages = append(messages, Message{
-			Role:    "assistant",
-			Content: entry,
-		})
-	}
-
+	/*
+		var commitLog = getLogs()
+		for _, entry := range commitLog {
+			messages = append(messages, Message{
+				Role:    "assistant",
+				Content: entry,
+			})
+		}
+	*/
 	messages = append(messages, Message{
 		Role:    "user",
 		Content: jsonPrompt,
