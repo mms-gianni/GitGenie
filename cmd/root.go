@@ -2,6 +2,8 @@ package cmd
 
 import (
 	_ "embed"
+	"fmt"
+	"log"
 	"os"
 
 	"github.com/mms-gianni/GitGenie/pkg/genie"
@@ -36,6 +38,10 @@ var Diffcontext string
 func Execute() (*genie.Config, error) {
 	err := rootCmd.Execute()
 
+	if err != nil {
+		log.Fatalf("failure: %s", err)
+	}
+
 	config := &genie.Config{
 		OpenAiApiHost:  OpenAiApiHost,
 		OpenAiApiToken: OpenAiApiToken,
@@ -47,6 +53,13 @@ func Execute() (*genie.Config, error) {
 		Signoff:        Signoff,
 		Debug:          Debug,
 		Diffcontext:    Diffcontext,
+	}
+
+	help := rootCmd.Flag("help").Value
+	if help.String() == "true" {
+		fmt.Println("GitGenie is a git plugin that creates commit messages with ChatGPT.")
+		fmt.Println()
+		os.Exit(0)
 	}
 
 	return config, err
