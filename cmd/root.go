@@ -62,6 +62,8 @@ func Execute() (*genie.Config, error) {
 		os.Exit(0)
 	}
 
+	genie.Init(config)
+	genie.Run()
 	return config, err
 }
 
