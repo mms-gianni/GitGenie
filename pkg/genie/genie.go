@@ -149,8 +149,11 @@ func getBranch() string {
 
 func getTicket() string {
 	var branch string = getBranch()
-	r, _ := regexp.Compile(`^([A-Z]+-\d+).*`) // Matches only JIRA tickets for now
+	r, _ := regexp.Compile(`\b([A-Z]+-\d+)\b`) // Matches only JIRA tickets for now
 	matches := r.FindStringSubmatch(branch)
+	if len(matches) == 0 {
+		return ""
+	}
 	var ticket string = string(matches[1])
 	return ticket
 }
