@@ -96,8 +96,14 @@ func submitToApiChat(diff string) []string {
 
 	m, _ := json.Marshal(messages)
 
+	// Load model from environment variable or use default
+	var model string = "gpt-5.4-mini"
+	if value, ok := os.LookupEnv("GENIE_MODEL"); ok {
+		model = value
+	}
+
 	var body = `{
-		"model": "gpt-3.5-turbo",
+		"model": "` + model + `",
 		"messages": ` + string(m) + `,
 		"temperature": 1,
 		"max_tokens": ` + config.Max_tokens + `,
