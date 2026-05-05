@@ -10,6 +10,8 @@ builds:
     binary: git-gci
     env:
       - CGO_ENABLED=0
+    ldflags:
+      - -X github.com/mms-gianni/GitGenie/cmd.Version={{.Version}}
     goos:
       - linux
       - windows

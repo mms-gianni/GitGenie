@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	_ "embed"
 	"fmt"
 	"log"
 	"os"
@@ -10,7 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-//go:embed VERSION
 var Version string
 
 var rootCmd = &cobra.Command{
