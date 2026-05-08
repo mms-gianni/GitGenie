@@ -106,7 +106,7 @@ func submitToApiChat(diff string) []string {
 		"model": "` + model + `",
 		"messages": ` + string(m) + `,
 		"temperature": 1,
-		"max_tokens": ` + config.Max_tokens + `,
+		"max_completion_tokens": ` + config.Max_tokens + `,
 		"top_p": 1,
 		"n": ` + config.Suggestions + `,
 		"stream": false,
