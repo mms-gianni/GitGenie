@@ -6,6 +6,7 @@
   [![GoDoc](https://godoc.org/github.com/mms-gianni/GitGenie?status.svg)](https://godoc.org/github.com/mms-gianni/GitGenie)
   [![GitHub release](https://img.shields.io/github/release/mms-gianni/GitGenie.svg)](https://github.com/kubero-dev/GitGenie/releases/)
   [![GitHub license](https://img.shields.io/github/license/mms-gianni/GitGenie.svg)](https://github.com/kubero-dev/GitGenie/blob/main/LICENSE)
+  ![Downloads](https://img.shields.io/github/downloads/mms-gianni/GitGenie/total?color=green)
 
 
 Once upon a time, there was a magical genie who lived inside Git as a plugin. This genie loved to help developers write better commit messages when they changed their code.
